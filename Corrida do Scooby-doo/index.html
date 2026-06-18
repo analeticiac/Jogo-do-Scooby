@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        🔍 Scooby-Doo Mystery Runner
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ================================= -->
+    <!-- LOADING -->
+    <!-- ================================= -->
+
+    <div id="loadingScreen">
+
+        <div class="loaderCard">
+
+            <h2>
+                Carregando o jogo...
+            </h2>
+
+            <div class="loader">
+
+                <div class="loaderBar"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- TELA INICIAL -->
+    <!-- ================================= -->
+
+    <div
+        id="startScreen"
+        class="screen active">
+
+        <div class="startCard">
+
+            <h1>
+                🔍 Scooby-Doo Mystery Runner
+            </h1>
+
+            <p>
+
+                Corra pela noite misteriosa,
+                colete os biscoitos Scooby
+                e evite os obstáculos
+                assustadores pelo caminho.
+
+            </p>
+
+            <button id="startBtn">
+
+                Iniciar Jogo
+
+            </button>
+
+            <div class="controlsInfo">
+
+                <h3>
+                    Controles
+                </h3>
+
+                <p>
+                    ⌨️ Espaço = Pular
+                </p>
+
+                <p>
+                    ⬆️ Seta para cima = Pular
+                </p>
+
+                <p>
+                    ⏸️ P = Pausar
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- HUD -->
+    <!-- ================================= -->
+
+    <div id="hud">
+
+        <div class="hudBox">
+
+            <span>
+                Pontos:
+            </span>
+
+            <strong id="score">
+                0
+            </strong>
+
+        </div>
+
+        <div class="hudBox">
+
+            <span>
+                🔎 Biscoitos Scooby:
+            </span>
+
+            <strong id="clues">
+                0
+            </strong>
+
+        </div>
+
+        <div class="hudBox">
+
+            <span>
+                🏆 Recorde:
+            </span>
+
+            <strong id="record">
+                0
+            </strong>
+
+        </div>
+
+        <div class="hudBox">
+
+            <span>
+                FPS:
+            </span>
+
+            <strong id="fps">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- PAUSA -->
+    <!-- ================================= -->
+
+    <div id="pauseScreen">
+
+        <div class="pauseCard">
+
+            <h2>
+
+                ⏸️ Jogo Pausado
+
+            </h2>
+
+            <p>
+
+                Pressione P para continuar
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- GAME -->
+    <!-- ================================= -->
+
+    <div id="game">
+
+        <!-- Fundo -->
+
+        <div id="backgroundLayer"></div>
+
+        <!-- Lua -->
+
+        <img
+            src="Imagens/Lua.png"
+            id="moon"
+            alt="Lua">
+
+        <!-- Nuvens -->
+
+        <div id="cloudsContainer">
+
+            <img
+                src="Imagens/Nuvem.webp"
+                class="cloud cloud1"
+                alt="Nuvem">
+
+            <img
+                src="Imagens/Nuvem.webp"
+                class="cloud cloud2"
+                alt="Nuvem">
+
+            <img
+                src="Imagens/Nuvem.webp"
+                class="cloud cloud3"
+                alt="Nuvem">
+
+            <img
+                src="Imagens/Nuvem.webp"
+                class="cloud cloud3"
+                alt="Nuvem">
+
+        </div>
+
+        <!-- Árvores -->
+
+        <div id="treesLayer"></div>
+
+
+        <!-- Fantasmas Decorativos -->
+
+        <div id="ghostsContainer">
+
+            <img
+                src="Imagens/Fantasma.jpg"
+                class="ghost ghost1"
+                alt="Fantasma">
+
+            <img
+                src="Imagens/Fantasma2.jpg"
+                class="ghost ghost2"
+                alt="Fantasma">
+
+        </div>
+
+        <!-- Estrelas -->
+
+        <div id="starsLayer"></div>
+
+        <!-- Partículas -->
+
+        <div id="particles"></div>
+
+        <!-- Chão -->
+
+        <div id="ground"></div>
+
+        <!-- Scooby -->
+
+        <div id="scoobyContainer">
+
+            <img
+                id="scooby"
+                src="Imagens/Scooby.gif"
+                alt="Scooby">
+
+            <!-- Poeira -->
+
+            <div id="dustContainer">
+
+                <span class="dust dust1"></span>
+                <span class="dust dust2"></span>
+                <span class="dust dust3"></span>
+
+            </div>
+
+        </div>
+
+        <!-- Obstáculos -->
+
+        <div id="obstaclesContainer"></div>
+
+        <!-- Pistas -->
+
+        <div id="cluesContainer"></div>
+
+        <!-- Efeitos -->
+
+        <div id="collectEffects"></div>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- GAME OVER -->
+    <!-- ================================= -->
+
+    <div
+        id="gameOverScreen"
+        class="screen">
+
+        <div class="gameOverCard">
+
+            <h1>
+
+                GAME OVER
+
+            </h1>
+
+            <div class="results">
+
+                <p>
+
+                    Pontuação Final:
+
+                    <span id="finalScore">
+
+                        0
+
+                    </span>
+
+                </p>
+
+                <p>
+
+                    🔎 Pistas Coletadas:
+
+                    <span id="finalClues">
+
+                        0
+
+                    </span>
+
+                </p>
+
+                <p>
+
+                    🏆 Recorde:
+
+
+                    <span id="finalRecord">
+
+                        0
+
+                    </span>
+
+                </p>
+
+            </div>
+
+            <button id="restartBtn">
+
+                Jogar Novamente
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- MOBILE -->
+    <!-- ================================= -->
+
+    <div id="mobileControls">
+
+        <button id="jumpBtn">
+
+            ⬆️
+
+        </button>
+
+    </div>
+
+    <!-- ================================= -->
+    <!-- TEMPLATE OBSTÁCULOS -->
+    <!-- ================================= -->
+
+    <template id="obstacleTemplate">
+
+        <div class="obstacle">
+
+            <img
+                src="Imagens/Fantasma2.jpg"
+                alt="Fantasma">
+
+        </div>
+
+    </template>
+
+    <!-- ================================= -->
+    <!-- TEMPLATE PISTA -->
+    <!-- ================================= -->
+
+    <template id="clueTemplate">
+
+        <div class="clue">
+
+            <img
+                src="Imagens/Biscoito.png"
+                alt="Biscoito Scooby">
+
+        </div>
+
+    </template>
+
+    <!-- ================================= -->
+    <!-- TEMPLATE EFEITO -->
+    <!-- ================================= -->
+
+    <template id="collectTemplate">
+
+        <div class="collectEffect">
+
+            +1 🐶🍪
+
+        </div>
+
+    </template>
+
+    <!-- ================================= -->
+    <!-- ÁUDIOS -->
+    <!-- ================================= -->
+
+    <audio
+        id="jumpSound"
+        preload="auto">
+
+        <source
+            src="assets/sounds/jump.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+    <audio
+        id="clueSound"
+        preload="auto">
+
+        <source
+            src="assets/sounds/clue.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+    <audio
+        id="gameOverSound"
+        preload="auto">
+
+        <source
+            src="assets/sounds/gameover.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+    <audio
+        id="backgroundMusic"
+        preload="auto"
+        loop>
+
+        <source
+            src="assets/sounds/music.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+    <!-- ================================= -->
+    <!-- SCRIPT -->
+    <!-- ================================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

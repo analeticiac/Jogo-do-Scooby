@@ -1,0 +1,1413 @@
+/* =====================================================
+   SCOOBY-DOO MYSTERY RUNNER
+   style.css
+   Parte 2A
+===================================================== */
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+:root{
+
+    --night1:#07101f;
+    --night2:#101d35;
+    --night3:#1a2947;
+
+    --moon:#f5f5d5;
+
+    --white:#ffffff;
+
+    --yellow:#ffd54a;
+
+    --blue:#8ec5ff;
+
+    --panel:
+    rgba(255,255,255,.9);
+
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    position:relative;
+
+    background:
+    linear-gradient(
+        to bottom,
+        var(--night1),
+        var(--night2),
+        var(--night3)
+    );
+
+    color:white;
+}
+
+/* =========================
+   TELAS
+========================= */
+
+.screen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+    background:
+    rgba(0,0,0,.85);
+}
+
+.screen.active{
+
+    display:flex;
+}
+
+/* =========================
+   START CARD
+========================= */
+
+.startCard{
+
+    width:90%;
+
+    max-width:700px;
+
+    background:
+    rgba(8,15,35,.95);
+
+    border:
+    2px solid rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.5);
+}
+
+.startCard h1{
+
+    font-size:3.4rem;
+
+    color:#ffd54a;
+
+    margin-bottom:20px;
+}
+
+.startCard p{
+
+    font-size:1.15rem;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+#startBtn,
+#restartBtn{
+
+    background:#ffd54a;
+
+    color:#111;
+
+    font-size:1.2rem;
+
+    font-weight:bold;
+
+    padding:
+    16px
+    40px;
+
+    border-radius:15px;
+}
+
+#startBtn:hover,
+#restartBtn:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 10px 25px rgba(255,213,74,.5);
+}
+
+/* =========================
+   CONTROLES
+========================= */
+
+.controlsInfo{
+
+    margin-top:25px;
+}
+
+.controlsInfo h3{
+
+    margin-bottom:15px;
+}
+
+.controlsInfo p{
+
+    margin-bottom:8px;
+}
+
+/* =========================
+   HUD
+========================= */
+
+#hud{
+
+    position:fixed;
+
+    top:15px;
+    left:15px;
+    right:15px;
+
+    z-index:500;
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+}
+
+.hudBox{
+
+    background:
+    rgba(255,255,255,.12);
+
+    backdrop-filter:
+    blur(10px);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    padding:
+    10px
+    18px;
+
+    border-radius:14px;
+
+    font-weight:bold;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.3);
+}
+
+.hudBox strong{
+
+    color:#ffd54a;
+}
+
+/* =========================
+   PAUSE SCREEN
+========================= */
+
+#pauseScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:
+    rgba(0,0,0,.6);
+
+    z-index:9998;
+}
+
+.pauseCard{
+
+    background:
+    #111d35;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    border:
+    1px solid rgba(255,255,255,.15);
+}
+
+.pauseCard h2{
+
+    margin-bottom:10px;
+
+    color:#ffd54a;
+}
+
+/* =========================
+   GAME AREA
+========================= */
+
+#game{
+
+    position:relative;
+
+    width:100vw;
+
+    height:100vh;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #06101f,
+        #101d35,
+        #1b2c50
+    );
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+#backgroundLayer{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #05101d,
+        #0f1f3c,
+        #182d4d
+    );
+
+    z-index:1;
+}
+
+/* =========================
+   LUA
+========================= */
+
+#moon{
+
+    position:absolute;
+
+    width:180px;
+
+    top:30px;
+    right:60px;
+
+    z-index:5;
+
+    filter:
+    drop-shadow(
+        0 0 25px
+        rgba(255,255,220,.8)
+    );
+
+    animation:
+    moonPulse
+    4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes moonPulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* =========================
+   NUVENS
+========================= */
+
+#cloudsContainer{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:9;
+}
+
+.cloud{
+
+    position:absolute;
+
+    opacity:.6;
+}
+
+.cloud1{
+
+    width:220px;
+
+    top:20px;
+
+    animation:
+    cloudMove1
+    45s
+    linear
+    infinite;
+}
+
+.cloud2{
+
+    width:260px;
+
+    top:60px;
+
+    animation:
+    cloudMove2
+    60s
+    linear
+    infinite;
+}
+
+.cloud3{
+
+    width:180px;
+
+    top:110px;
+
+    animation:
+    cloudMove3
+    50s
+    linear
+    infinite;
+}
+
+@keyframes cloudMove1{
+
+    from{
+        left:110%;
+    }
+
+    to{
+        left:-300px;
+    }
+}
+
+@keyframes cloudMove2{
+
+    from{
+        left:120%;
+    }
+
+    to{
+        left:-350px;
+    }
+}
+
+@keyframes cloudMove3{
+
+    from{
+        left:130%;
+    }
+
+    to{
+        left:-250px;
+    }
+}
+
+/* =========================
+   ÁRVORES
+========================= */
+
+#treesLayer{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:19px;
+
+    height:600px;
+
+    z-index:7;
+
+    background:
+    url("Imagens/Bosque.png")
+    repeat-x bottom;
+
+    background-size:
+    auto 100%;
+
+    animation:
+    treesMove
+    18s
+    linear
+    infinite;
+}
+
+@keyframes treesMove{
+
+    from{
+        background-position-x:0;
+    }
+
+    to{
+        background-position-x:-1800px;
+    }
+}
+
+/* =========================
+   CORUJA
+========================= */
+
+#owl{
+
+    position:absolute;
+
+    width:80px;
+
+    left:250px;
+
+    bottom:340px;
+
+    z-index:8;
+
+    animation:
+    owlBlink
+    7s
+    infinite;
+}
+
+@keyframes owlBlink{
+
+    0%,
+    95%,
+    100%{
+        opacity:1;
+    }
+
+    97%{
+        opacity:.25;
+    }
+}
+
+/* =========================
+   ESTRELAS
+========================= */
+
+#starsLayer{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+}
+
+/* =========================
+   CHÃO
+========================= */
+
+#ground{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:140px;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #273238,
+        #111820
+    );
+
+    border-top:
+    4px solid #455a64;
+
+    z-index:20;
+}
+
+#ground::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,.03) 0px,
+        rgba(255,255,255,.03) 20px,
+        transparent 20px,
+        transparent 40px
+    );
+
+    animation:
+    roadMove
+    .7s
+    linear
+    infinite;
+}
+
+@keyframes roadMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-40px);
+    }
+}
+/* =====================================================
+   SCOOBY-DOO MYSTERY RUNNER
+   style.css
+   Parte 2B
+===================================================== */
+
+/* =========================
+   SCOOBY (PERSONAGEM)
+========================= */
+
+#scoobyContainer{
+
+    position:absolute;
+
+    left:120px;
+
+    bottom:140px;
+
+    width:130px;
+
+    height:130px;
+
+    z-index:100;
+}
+
+#scooby{
+
+    width:150%;
+    height:150%;
+
+    object-fit:contain;
+
+    user-select:none;
+
+    pointer-events:none;
+}
+
+/* Corrida */
+
+.running{
+
+    animation:
+    scoobyRun .25s linear infinite;
+}
+
+@keyframes scoobyRun{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-3px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+}
+
+/* Pulo */
+
+.jumping{
+
+    animation:
+    scoobyJump .3s ease;
+}
+
+@keyframes scoobyJump{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    50%{
+        transform:rotate(-6deg);
+    }
+
+    100%{
+        transform:rotate(0deg);
+    }
+}
+
+/* Game Over */
+
+.dead{
+
+    filter:grayscale(100%);
+
+    transform:rotate(90deg);
+
+    transition:.4s;
+}
+
+/* =========================
+   POEIRA
+========================= */
+
+#dustContainer{
+
+    position:absolute;
+
+    left:-10px;
+
+    bottom:10px;
+
+    width:80px;
+
+    height:40px;
+}
+
+.dust{
+
+    position:absolute;
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.7);
+
+    animation:dustMove .6s linear infinite;
+}
+
+.dust1{ left:10px; animation-delay:0s; }
+.dust2{ left:25px; animation-delay:.2s; }
+.dust3{ left:40px; animation-delay:.4s; }
+
+@keyframes dustMove{
+
+    0%{
+        opacity:.8;
+        transform:translate(0,0) scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:translate(-40px,-20px) scale(1.8);
+    }
+}
+
+/* =========================
+   OBSTÁCULOS
+========================= */
+
+#obstaclesContainer{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:90;
+
+    pointer-events:none;
+}
+
+.obstacle{
+
+    position:absolute;
+
+    width:95px;
+
+    height:95px;
+
+    bottom:140px;
+
+    left:100vw; /* vindo da direita */
+
+}
+
+.obstacle img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    animation:
+    obstacleShake .3s infinite alternate;
+}
+
+@keyframes obstacleShake{
+
+    from{
+        transform:rotate(-2deg);
+    }
+
+    to{
+        transform:rotate(2deg);
+    }
+}
+
+/* =========================
+   PISTAS (COLETA)
+========================= */
+
+#cluesContainer{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:80;
+
+    pointer-events:none;
+}
+
+.clue{
+
+    position:absolute;
+
+    width:55px;
+
+    height:55px;
+
+    left:100vw;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.clue img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    animation:
+
+    clueSpin 1.2s linear infinite,
+    clueFloat 1s ease-in-out infinite,
+    clueGlow 1.5s ease-in-out infinite;
+}
+
+/* giro */
+
+@keyframes clueSpin{
+
+    from{ transform:rotateY(0deg); }
+    to{ transform:rotateY(360deg); }
+}
+
+/* flutuar */
+
+@keyframes clueFloat{
+
+    0%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+    100%{ transform:translateY(0); }
+}
+
+/* brilho */
+
+@keyframes clueGlow{
+
+    0%{ filter:drop-shadow(0 0 5px #ffd54a); }
+    50%{ filter:drop-shadow(0 0 15px #ffd54a); }
+    100%{ filter:drop-shadow(0 0 5px #ffd54a); }
+}
+
+/* =========================
+   EFEITO DE COLETA
+========================= */
+
+#collectEffects{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:300;
+}
+
+.collectEffect{
+
+    position:absolute;
+
+    color:#ffd54a;
+
+    font-weight:bold;
+
+    font-size:22px;
+
+    text-shadow:0 0 10px #ffd54a;
+
+    animation:collectAnim .8s forwards;
+}
+
+@keyframes collectAnim{
+
+    0%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:translateY(-60px) scale(1.5);
+    }
+}
+
+/* =========================
+   PARTÍCULAS
+========================= */
+
+#particles{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:50;
+
+    pointer-events:none;
+}
+
+.spark{
+
+    position:absolute;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:#fff3a0;
+
+    animation:sparkAnim 1s linear forwards;
+}
+
+@keyframes sparkAnim{
+
+    from{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    to{
+        opacity:0;
+        transform:translateY(-30px) scale(0);
+    }
+}
+
+/* =========================
+   FANTASMAS
+========================= */
+
+#ghostsContainer{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:4;
+
+    pointer-events:none;
+}
+
+.ghost{
+
+    position:absolute;
+
+    width:70px;
+
+    opacity:.6;
+
+    animation:ghostFloat 10s linear infinite;
+}
+
+.ghost1{
+    top:80px;
+}
+
+.ghost2{
+    top:160px;
+    animation-delay:3s;
+}
+
+@keyframes ghostFloat{
+
+    from{
+        left:110%;
+    }
+
+    to{
+        left:-120px;
+    }
+}
+
+/* =========================
+   LOADING SCREEN
+========================= */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(#0b1a33,#1b2c50);
+
+    z-index:10000;
+}
+
+.loaderCard{
+
+    background:#0f1f3c;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.loaderBar{
+
+    width:0%;
+
+    height:10px;
+
+    background:#ffd54a;
+
+    animation:loading 2s linear forwards;
+}
+
+@keyframes loading{
+
+    from{ width:0%; }
+    to{ width:100%; }
+}
+/* =====================================================
+   SCOOBY-DOO MYSTERY RUNNER
+   style.css
+   Parte 2C
+===================================================== */
+
+/* =========================
+   HUD ANIMAÇÕES
+========================= */
+
+.hudBox{
+
+    animation:hudIn .5s ease;
+}
+
+@keyframes hudIn{
+
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   START SCREEN ANIMAÇÃO
+========================= */
+
+.startCard{
+
+    animation:popIn .6s ease;
+}
+
+@keyframes popIn{
+
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* =========================
+   GAME OVER ANIMAÇÃO
+========================= */
+
+.gameOverCard{
+
+    animation:gameOverIn .5s ease;
+}
+
+@keyframes gameOverIn{
+
+    from{
+        opacity:0;
+        transform:translateY(-40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   SCORE POP
+========================= */
+
+.score-pop{
+
+    animation:scorePop .3s ease;
+}
+
+@keyframes scorePop{
+
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.3); }
+    100%{ transform:scale(1); }
+}
+
+/* =========================
+   RECORD ANIMAÇÃO
+========================= */
+
+.record-beat{
+
+    animation:recordBeat .6s infinite;
+}
+
+@keyframes recordBeat{
+
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.15); }
+    100%{ transform:scale(1); }
+}
+
+/* =========================
+   FLASH GAME OVER
+========================= */
+
+.flash-red{
+
+    animation:flash .2s linear 2;
+}
+
+@keyframes flash{
+
+    0%{ background:rgba(50, 3, 3, 0); }
+    50%{ background:rgba(255,0,0,.25); }
+    100%{ background:rgba(255,0,0,0); }
+}
+
+/* =========================
+   BOTÃO MOBILE
+========================= */
+
+#mobileControls{
+
+    position:fixed;
+
+    bottom:20px;
+
+    right:20px;
+
+    z-index:1000;
+}
+
+#jumpBtn{
+
+    width:85px;
+
+    height:85px;
+
+    border-radius:50%;
+
+    background:#ffd54a;
+
+    color:#111;
+
+    font-weight:bold;
+
+    font-size:18px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+#jumpBtn:active{
+
+    transform:scale(.95);
+}
+
+/* =========================
+   RESPONSIVIDADE TABLET
+========================= */
+
+@media (max-width:1024px){
+
+    #scoobyContainer{
+        width:110px;
+        height:110px;
+    }
+
+    .obstacle{
+        width:80px;
+        height:80px;
+    }
+
+    .clue{
+        width:50px;
+        height:50px;
+    }
+
+    .startCard h1{
+        font-size:2.8rem;
+    }
+}
+
+/* =========================
+   RESPONSIVIDADE MOBILE
+========================= */
+
+@media (max-width:768px){
+
+    #hud{
+        top:10px;
+        left:10px;
+        right:10px;
+        gap:8px;
+    }
+
+    .hudBox{
+        font-size:14px;
+        padding:8px 12px;
+    }
+
+    #moon{
+        width:120px;
+        right:20px;
+    }
+
+    .cloud{
+        width:140px;
+    }
+
+    #scoobyContainer{
+        width:90px;
+        height:90px;
+        left:60px;
+    }
+
+    .obstacle{
+        width:70px;
+        height:70px;
+    }
+
+    .clue{
+        width:45px;
+        height:45px;
+    }
+
+    .startCard,
+    .gameOverCard{
+        padding:25px;
+    }
+
+    .startCard h1{
+        font-size:2.2rem;
+    }
+
+    #jumpBtn{
+        width:75px;
+        height:75px;
+    }
+}
+
+/* =========================
+   MOBILE PEQUENO
+========================= */
+
+@media (max-width:480px){
+
+    #hud{
+        flex-direction:column;
+    }
+
+    .hudBox{
+        width:100%;
+        text-align:center;
+    }
+
+    #scoobyContainer{
+        width:75px;
+        height:75px;
+        left:30px;
+    }
+
+    .obstacle{
+        width:60px;
+        height:60px;
+    }
+
+    .clue{
+        width:38px;
+        height:38px;
+    }
+
+    .startCard h1{
+        font-size:1.8rem;
+    }
+
+    .startCard p{
+        font-size:1rem;
+    }
+
+    #jumpBtn{
+        width:65px;
+        height:65px;
+        font-size:14px;
+    }
+}
+
+/* =========================
+   TELAS BAIXAS
+========================= */
+
+@media (max-height:600px){
+
+    #moon{
+        width:90px;
+    }
+
+    .cloud{
+        width:110px;
+    }
+
+    .startCard,
+    .gameOverCard{
+        transform:scale(.9);
+    }
+}
+
+/* =========================
+   OTIMIZAÇÃO DE PERFORMANCE
+========================= */
+
+.cloud,
+.obstacle,
+.clue,
+#scooby{
+
+    will-change:transform;
+}
+
+/* =========================
+   CLASSES UTILITÁRIAS
+========================= */
+
+.hidden{
+    display:none !important;
+}
+
+.flex{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.center{
+    text-align:center;
+}
+
+/* =========================
+   FIM DO CSS
+========================= */
